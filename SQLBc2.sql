@@ -1,5 +1,5 @@
-﻿--Student ID
---Student Name
+﻿--Student ID 67040249125
+--Student Name Pantawat naree
 
 -- *********แบบฝึกหัด Basic Query #2 ***************
  
@@ -344,3 +344,4 @@ where S.Country = 'USA' AND Cu.Country = 'USA' AND E.Country = 'USA'
 Group By P.ProductID, ProductName;
 
 ---------------------------------------------------------------------------
+
