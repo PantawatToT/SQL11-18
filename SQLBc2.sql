@@ -1,5 +1,5 @@
 ﻿--Student ID 67040249125
---Student Name Pantawat naree
+--Student Name Pantawat Naree
 
 -- *********แบบฝึกหัด Basic Query #2 ***************
  
@@ -38,7 +38,9 @@ where P.SupplierID = S.SupplierID;
 
 --แบบ Join
 select ProductID, ProductName, UnitPrice, CompanyName
-from Products As P INNER JOIN Suppliers AS S ON P.SupplierID = S.SupplierID;
+from Products As P INNER JOIN Suppliers AS S ON P.SupplierID = S.SupplierID
+where P.SupplierID = S.SupplierID;
+
 
 
 ---------------------------------------------------------------------
@@ -131,6 +133,9 @@ select C.CustomerID, CompanyName, Sum(UnitPrice * Quantity) As Sumprice
 from [Order Details] AS OD INNER JOIN orders AS O ON OD.OrderID = O.OrderID
 						   INNER JOIN Customers AS C on O.CustomerID = C.CustomerID
 where OD.OrderID = O.OrderID AND O.CustomerID = C.CustomerID
+	  And OrderDate between '1997-01-01' And '1997-01-31'
+Group by C.CustomerID, CompanyName
+order by SumPrice DESC
 
 ---------------------------------------------------------------------------------
 
@@ -212,7 +217,7 @@ where E.EmployeeID = O.EmployeeID AND O.ShipVia = S.ShipperID
 	  AND CompanyName = 'Speedy Express' 
 	  AND ShipCountry = 'USA'
 	  AND YEAR(OrderDate) = 1997
-group by E.EmployeeID, EmployeeName;
+group by E.EmployeeID, FirstName, LastName;
 
 --แบบ Join
 select  E.EmployeeID, FirstName+' '+LastName AS EmployeeName,
@@ -223,7 +228,7 @@ from Employees As E INNER JOIN Orders As O ON E.EmployeeID = O.EmployeeID
 where CompanyName = 'Speedy Express' 
 	  AND ShipCountry = 'USA'
 	  AND YEAR(OrderDate) = 1997
-group by E.EmployeeID, EmployeeName;
+group by E.EmployeeID, FirstName, LastName;
 
 --------------------------------------------------------------------------
 /*14 : จงแสดงรหัสสินค้า ชื่อสินค้า ยอดขายรวม เฉพาะสินค้าที่นำมาจัดจำหน่ายจากประเทศญี่ปุ่น และมีการสั่งซื้อในปี 1997 และจัดส่งไปยังประเทศสหรัฐอเมริกา */
@@ -344,4 +349,3 @@ where S.Country = 'USA' AND Cu.Country = 'USA' AND E.Country = 'USA'
 Group By P.ProductID, ProductName;
 
 ---------------------------------------------------------------------------
-
